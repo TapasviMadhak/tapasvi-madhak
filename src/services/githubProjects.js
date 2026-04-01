@@ -30,7 +30,15 @@ const getReadmeSummary = (markdown) => {
   });
 
   if (!candidate) {
-    return null;
+    const firstUseful = paragraphs
+      .map((section) => cleanMarkdown(section))
+      .find((section) => section.length >= 20);
+
+    if (!firstUseful) {
+      return null;
+    }
+
+    return firstUseful.length <= 180 ? firstUseful : `${firstUseful.slice(0, 177).trim()}...`;
   }
 
   const summary = cleanMarkdown(candidate);
@@ -41,15 +49,42 @@ const getReadmeSummary = (markdown) => {
   return `${summary.slice(0, 177).trim()}...`;
 };
 
-const fetchReadmeText = async (owner, repoName, defaultBranch) => {
-  const rawReadmeUrl = `https://raw.githubusercontent.com/${owner}/${repoName}/${defaultBranch}/README.md`;
-  const response = await fetch(rawReadmeUrl);
+const decodeBase64Utf8 = (base64Text) => {
+  const binary = atob(base64Text);
+  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+  return new TextDecoder('utf-8').decode(bytes);
+};
 
-  if (!response.ok) {
-    return null;
+const fetchReadmeText = async (owner, repoName, defaultBranch) => {
+  // GitHub API handles README name variations (README.md/readme.md/README.rst) in one endpoint.
+  const readmeApiUrl = `https://api.github.com/repos/${owner}/${repoName}/readme`;
+  const apiResponse = await fetch(readmeApiUrl, {
+    headers: {
+      Accept: 'application/vnd.github+json',
+    },
+  });
+
+  if (apiResponse.ok) {
+    const payload = await apiResponse.json();
+    if (payload?.content) {
+      return decodeBase64Utf8(payload.content.replace(/\n/g, ''));
+    }
   }
 
-  return response.text();
+  const branchesToTry = [defaultBranch, 'main', 'master'].filter(Boolean);
+  const fileNames = ['README.md', 'readme.md', 'README.MD'];
+
+  for (const branch of branchesToTry) {
+    for (const fileName of fileNames) {
+      const rawReadmeUrl = `https://raw.githubusercontent.com/${owner}/${repoName}/${branch}/${fileName}`;
+      const response = await fetch(rawReadmeUrl);
+      if (response.ok) {
+        return response.text();
+      }
+    }
+  }
+
+  return null;
 };
 
 export const fetchLiveGithubProjects = async (username, fallbackProjects) => {

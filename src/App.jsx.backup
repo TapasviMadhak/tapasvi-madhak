@@ -1,0 +1,553 @@
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { ArrowRight, LockKeyhole, Mail, Github, Linkedin, Award, Trophy, BookOpen, ExternalLink } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+const skills = [
+  'Cybersecurity',
+  'Ethical Hacking',
+  'Web Application Security',
+  'Network Security',
+  'Vulnerability Assessment',
+  'Recon and Enumeration',
+  'OWASP Top 10',
+  'Incident Response Basics',
+  'Threat Detection Basics',
+  'SIEM Fundamentals',
+  'Burp Suite',
+  'Nmap',
+  'Wireshark',
+  'Linux',
+  'Python',
+  'JavaScript',
+  'TypeScript',
+  'React',
+  'Tailwind CSS',
+  'Git and GitHub',
+];
+
+const projects = [
+  {
+    title: 'ares',
+    tag: 'Cyber Security Tooling',
+    text: 'Python-based security project focused on practical cyber tooling workflows.',
+    link: 'https://github.com/TapasviMadhak/ares',
+    stack: 'Python',
+  },
+  {
+    title: 'CyberToolkit-v1.0',
+    tag: 'Security Toolkit',
+    text: 'Collection of cybersecurity utilities for day-to-day testing and security practice.',
+    link: 'https://github.com/TapasviMadhak/CyberToolkit-v1.0',
+    stack: 'Python',
+  },
+  {
+    title: 'TM-portfolio',
+    tag: 'Portfolio Engineering',
+    text: 'Previous portfolio implementation focused on frontend UX and modern web tooling.',
+    link: 'https://github.com/TapasviMadhak/TM-portfolio',
+    stack: 'TypeScript',
+  },
+  {
+    title: 'Skribbl.io_Clone',
+    tag: 'Realtime Web App',
+    text: 'Browser-based game clone project demonstrating JavaScript application architecture.',
+    link: 'https://github.com/TapasviMadhak/Skribbl.io_Clone',
+    stack: 'JavaScript',
+  },
+];
+
+const certifications = [
+  {
+    name: 'Certified Red Team Analyst',
+    issuer: 'CyberWarfare Labs',
+    link: 'https://labs.cyberwarfare.live/credential/achievement/69af2c4f22199ce903323117',
+  },
+  {
+    name: 'Junior Cybersecurity Analyst Career Path',
+    issuer: 'Cisco Academy',
+    link: 'https://www.credly.com/badges/4d550a54-9e66-45a9-a667-7eba1964c035/linked_in_profile',
+  },
+  {
+    name: 'Networking Devices and Initial Configuration',
+    issuer: 'Cisco Academy',
+    link: 'https://www.credly.com/badges/7ac0b096-27ce-4fc5-9fb9-9c0861e5edc0/linked_in_profile',
+  },
+  {
+    name: 'Network Defense',
+    issuer: 'Cisco Academy',
+    link: 'https://www.credly.com/badges/9a5c41ff-75c9-4e09-a7c6-cbdb84601c51/linked_in_profile',
+  },
+  {
+    name: 'Networking Basics',
+    issuer: 'Cisco Academy',
+    link: 'https://www.credly.com/badges/ea93060c-7954-4982-93d3-212bc3a4ffb6/linked_in_profile',
+  },
+  {
+    name: 'Endpoint Security',
+    issuer: 'Cisco Academy',
+    link: 'https://www.credly.com/badges/de10fcee-fdd1-43e9-9ab3-bd81f818f86f/linked_in_profile',
+  },
+  {
+    name: 'Cyber Threat Management',
+    issuer: 'Cisco Academy',
+    link: 'https://www.credly.com/badges/e6d7c51e-8e60-4614-81b3-c49c4c41d4df/linked_in_profile',
+  },
+  {
+    name: 'Ethical Hacker',
+    issuer: 'Cisco Academy',
+    link: 'https://www.credly.com/badges/8450e451-6465-4cc2-b13c-ada59cd781a2/linked_in_profile',
+  },
+  {
+    name: 'The Web Developer Bootcamp 2025',
+    issuer: 'Udemy',
+    link: 'https://www.udemy.com/certificate/UC-be54063f-6e74-4b07-9032-3393e0c64d4e/',
+  },
+];
+
+const loadedModules = [
+  'REACT',
+  'TAILWIND',
+  'FRAMER-MOTION',
+  'BURP-SUITE',
+  'NMAP',
+  'WIRESHARK',
+  'PYTHON',
+  'SIEM',
+];
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0 },
+};
+
+function App() {
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loadingBlogs, setLoadingBlogs] = useState(true);
+  const { scrollYProgress } = useScroll();
+  const scaleProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+
+  useEffect(() => {
+    // Fetch Medium blog posts via RSS2JSON
+    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@tapasviMadhak')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 'ok') {
+          // Get all posts (expandable as you write more)
+          setBlogPosts(data.items);
+        }
+        setLoadingBlogs(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching Medium posts:', error);
+        setLoadingBlogs(false);
+      });
+  }, []);
+
+  return (
+    <div className="relative min-h-screen overflow-x-hidden bg-cyber-bg text-white">
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 z-50 h-1 bg-gradient-to-r from-cyber-neon via-cyber-lime to-cyber-orange origin-left"
+        style={{ scaleX: scaleProgress }}
+      />
+      
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(125,249,255,.2),transparent_30%),radial-gradient(circle_at_80%_10%,rgba(255,122,24,.28),transparent_26%),radial-gradient(circle_at_35%_75%,rgba(179,255,54,.22),transparent_30%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.06)_1px,transparent_1px)] bg-[size:44px_44px] opacity-35" />
+
+      <header className="sticky top-0 z-20 border-b-2 border-white/20 bg-cyber-bg/85 backdrop-blur">
+        <nav className="mx-auto flex w-[min(1120px,92%)] items-center justify-between py-4">
+          <a href="#top" className="font-display text-2xl font-bold tracking-wide text-cyber-neon">
+            TAPASVI
+            <span className="ml-1 text-base font-semibold text-cyber-orange">&lt;/&gt;</span>
+          </a>
+          <ul className="hidden gap-3 font-semibold md:flex">
+            {['about', 'skills', 'projects', 'contact'].map((item) => (
+              <li key={item}>
+                <a className="rounded-lg border-2 border-transparent px-3 py-1.5 capitalize transition hover:-translate-y-0.5 hover:border-cyber-neon" href={`#${item}`}>
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>
+
+      <main id="top" className="relative z-10">
+        <section className="mx-auto grid w-[min(1120px,92%)] gap-8 py-20 lg:grid-cols-[1.2fr_0.8fr] lg:py-24">
+          <motion.div initial="hidden" animate="show" variants={fadeInUp} transition={{ duration: 0.55 }}>
+            <p className="inline-flex rounded-full border-2 border-black bg-cyber-lime px-4 py-1.5 font-display text-sm font-bold text-black shadow-brutal">
+              Cybersecurity Student
+            </p>
+            <h1 className="mt-5 font-display text-5xl font-bold leading-tight md:text-6xl">
+              Breaking systems
+              <span className="block text-cyber-neon">to secure them better.</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-base text-cyber-slate md:text-lg">
+              I build practical security projects across vulnerability assessment, monitoring,
+              and defensive automation. I am focused on becoming a security engineer with both
+              red-team curiosity and blue-team discipline.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#projects" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-cyber-neon px-5 py-3 font-bold text-black shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1">
+                View Projects <ArrowRight size={18} />
+              </a>
+              <a href="#contact" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-cyber-orange px-5 py-3 font-bold text-black shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1">
+                Collaborate
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.aside
+            initial={{ opacity: 0, scale: 0.8, rotateZ: -5 }}
+            animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.2,
+              type: "spring",
+              stiffness: 100
+            }}
+            whileHover={{ 
+              scale: 1.05,
+              rotateZ: 2,
+              transition: { duration: 0.3 }
+            }}
+            className="animate-floaty rounded-2xl border-2 border-black bg-cyber-card p-6 shadow-brutal"
+          >
+            <h2 className="font-display text-2xl font-semibold text-cyber-lime">Quick Stats</h2>
+            <ul className="mt-4 space-y-3 text-cyber-slate">
+              <motion.li 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.4 }}
+                className="flex items-center justify-between rounded-xl border border-white/15 bg-black/20 px-4 py-3"
+              >
+                <span>Certificates</span><strong className="text-white">9</strong>
+              </motion.li>
+              <motion.li 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.4 }}
+                className="flex items-center justify-between rounded-xl border border-white/15 bg-black/20 px-4 py-3"
+              >
+                <span>Projects</span><strong className="text-white">4</strong>
+              </motion.li>
+              <motion.li 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6, duration: 0.4 }}
+                className="flex items-center justify-between rounded-xl border border-white/15 bg-black/20 px-4 py-3"
+              >
+                <span>Write-ups</span><strong className="text-white">{loadingBlogs ? '...' : blogPosts.length}</strong>
+              </motion.li>
+            </ul>
+            <div className="mt-5 rounded-xl border border-cyber-neon/40 bg-cyber-neon/10 p-4">
+              <p className="text-sm leading-relaxed text-cyber-neon">
+                Preparing for EC-Council's CSA, pursuing M.Sc. IT (Cybersecurity & Forensics) at Parul University, Vadodara.
+              </p>
+            </div>
+          </motion.aside>
+        </section>
+
+        <section id="about" className="mx-auto w-[min(1120px,92%)] py-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+            whileHover={{ scale: 1.01 }}
+            className="rounded-2xl border-2 border-black bg-cyber-card p-7 shadow-brutal"
+          >
+            <motion.p 
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="font-display text-sm font-bold text-cyber-neon"
+            >
+              # About.system
+            </motion.p>
+            <motion.h2 
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-2 font-display text-3xl font-semibold"
+            >
+              Operator Profile
+            </motion.h2>
+            <div className="mt-5 grid gap-4 md:grid-cols-[0.9fr_1.1fr]">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="rounded-xl border border-white/20 bg-black/20 p-4 text-sm text-cyber-slate"
+              >
+                <p>ROLE: Cybersecurity Student</p>
+                <p>FOCUS: Web App Security + SOC Basics</p>
+                <p>STATUS: Open for internships</p>
+                <p>LOCATION: India</p>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="rounded-xl border border-cyber-neon/40 bg-cyber-neon/10 p-4"
+              >
+                <p className="text-sm leading-relaxed text-cyber-slate">
+                  I am building a career in cybersecurity by combining offensive testing with
+                  defensive engineering. I enjoy converting findings into practical fixes and secure
+                  development habits that teams can actually adopt.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
+
+        <section id="skills" className="mx-auto w-[min(1120px,92%)] py-8">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="font-display text-sm font-bold text-cyber-lime"># Skills.json</p>
+            <h2 className="mt-2 font-display text-3xl font-semibold">Security Stack</h2>
+            <p className="mt-2 max-w-3xl text-cyber-slate">
+              Skills highlighted from your cybersecurity focus area and public project footprint.
+            </p>
+          </motion.div>
+          <div className="mt-5 rounded-2xl border-2 border-black bg-cyber-card p-6 shadow-brutal">
+            <div className="flex flex-wrap gap-2.5">
+              {skills.map((skill, index) => (
+                <motion.span
+                  key={skill}
+                  initial={{ opacity: 0, scale: 0.8, rotateZ: -5 }}
+                  whileInView={{ opacity: 1, scale: 1, rotateZ: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ 
+                    duration: 0.4, 
+                    delay: index * 0.03,
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 15
+                  }}
+                  whileHover={{ scale: 1.1, rotateZ: 2 }}
+                  className="rounded-full border-2 border-black bg-cyber-neon px-3 py-1.5 text-sm font-bold text-black cursor-default"
+                >
+                  {skill}
+                </motion.span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" className="mx-auto w-[min(1120px,92%)] py-8">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="font-display text-sm font-bold text-cyber-orange">$ ls -la ~/projects</p>
+            <h2 className="mt-2 font-display text-3xl font-semibold">Featured Projects</h2>
+          </motion.div>
+          <div className="mt-5 grid gap-5 md:grid-cols-2">
+            {projects.map((project, index) => (
+              <motion.article
+                key={project.title}
+                initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ 
+                  scale: 1.02,
+                  rotateZ: 1,
+                  transition: { duration: 0.2 }
+                }}
+                className="rounded-2xl border-2 border-black bg-cyber-card p-6 shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"
+              >
+                <p className="inline-flex rounded-full border-2 border-black bg-cyber-neon px-3 py-1 text-xs font-bold text-black">
+                  {project.tag}
+                </p>
+                <h3 className="mt-3 font-display text-xl font-bold">{project.title}</h3>
+                <p className="mt-2 text-sm text-cyber-slate">{project.text}</p>
+                <div className="mt-4 flex gap-2">
+                  <span className="rounded-lg border border-white/20 bg-black/30 px-2 py-1 text-xs text-cyber-slate">{project.stack}</span>
+                  <a href={project.link} target="_blank" rel="noreferrer" className="rounded-lg border border-white/20 bg-black/30 px-2 py-1 text-xs font-semibold text-cyber-neon hover:underline">Repository</a>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section id="certifications" className="mx-auto w-[min(1120px,92%)] py-8">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="font-display text-sm font-bold text-cyber-neon">$ cat certifications.json</p>
+            <h2 className="mt-2 font-display text-3xl font-semibold">Certifications</h2>
+          </motion.div>
+          <div className="mt-5 grid gap-4">
+            {certifications.map((cert, index) => (
+              <motion.article
+                key={cert.name}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.05,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ scale: 1.02, x: -5 }}
+                className="rounded-2xl border-2 border-black bg-cyber-card p-5 shadow-brutal cursor-pointer"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="rounded-lg border-2 border-black bg-cyber-lime p-2 text-black"><Award size={18} /></span>
+                  <div className="flex-1">
+                    <h3 className="font-display text-lg font-bold">{cert.name}</h3>
+                    <p className="text-sm text-cyber-slate">{cert.issuer}</p>
+                    {cert.link && (
+                      <a href={cert.link} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 rounded-lg border border-white/20 bg-black/30 px-3 py-1 text-xs font-semibold text-cyber-neon transition hover:underline">
+                        View Credential →
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section id="blog" className="mx-auto w-[min(1120px,92%)] py-8">
+          <p className="font-display text-sm font-bold text-cyber-orange">$ cat ~/medium-blog.xml</p>
+          <h2 className="mt-2 font-display text-3xl font-semibold">Latest Articles</h2>
+          <p className="mt-2 max-w-3xl text-cyber-slate">
+            Technical writeups and security insights from my Medium blog.
+          </p>
+          
+          {loadingBlogs ? (
+            <div className="mt-5 rounded-2xl border-2 border-black bg-cyber-card p-8 text-center shadow-brutal">
+              <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-cyber-neon border-t-transparent"></div>
+              <p className="mt-3 text-cyber-slate">Loading blog posts...</p>
+            </div>
+          ) : blogPosts.length > 0 ? (
+            <div className="mt-5 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex gap-5" style={{ width: 'max-content' }}>
+              {blogPosts.map((post, index) => {
+                // Extract first image from content or use a default
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = post.description || '';
+                const firstImg = tempDiv.querySelector('img');
+                const thumbnail = firstImg ? firstImg.src : null;
+                
+                // Clean excerpt (remove HTML tags)
+                const excerpt = post.description
+                  ? post.description.replace(/<[^>]*>/g, '').substring(0, 120) + '...'
+                  : 'Read more on Medium';
+
+                return (
+                  <motion.article
+                    key={post.guid}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={fadeInUp}
+                    transition={{ duration: 0.45, delay: index * 0.08 }}
+                    className="group w-80 flex-shrink-0 rounded-2xl border-2 border-black bg-cyber-card shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"
+                  >
+                    {thumbnail && (
+                      <div className="overflow-hidden rounded-t-xl">
+                        <img 
+                          src={thumbnail} 
+                          alt={post.title}
+                          className="h-48 w-full object-cover transition duration-300 group-hover:scale-105"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <div className="mb-2 flex items-center gap-2 text-xs text-cyber-slate">
+                        <BookOpen size={14} />
+                        <span>{new Date(post.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                      </div>
+                      <h3 className="font-display text-lg font-bold leading-tight">{post.title}</h3>
+                      <p className="mt-2 text-sm text-cyber-slate">{excerpt}</p>
+                      <a 
+                        href={post.link} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="mt-4 inline-flex items-center gap-1 rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-xs font-semibold text-cyber-neon transition hover:underline"
+                      >
+                        Read on Medium <ExternalLink size={14} />
+                      </a>
+                    </div>
+                  </motion.article>
+                );
+              })}
+              </div>
+            </div>
+          ) : (
+            <div className="mt-5 rounded-2xl border-2 border-black bg-cyber-card p-8 text-center shadow-brutal">
+              <BookOpen size={32} className="mx-auto text-cyber-slate" />
+              <p className="mt-3 text-cyber-slate">No blog posts found. Check back soon!</p>
+            </div>
+          )}
+          
+          <div className="mt-6 text-center">
+            <a 
+              href="https://medium.com/@tapasviMadhak" 
+              target="_blank" 
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-cyber-neon px-5 py-3 font-bold text-black shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"
+            >
+              View All Posts <ArrowRight size={18} />
+            </a>
+          </div>
+        </section>
+
+        <section id="contact" className="mx-auto w-[min(1120px,92%)] py-10">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeInUp}
+            transition={{ duration: 0.5 }}
+            className="rounded-2xl border-2 border-black bg-cyber-orange p-7 text-black shadow-brutal"
+          >
+            <p className="font-display text-sm font-bold">$ ./contact.exe</p>
+            <div className="flex flex-wrap items-center justify-between gap-5">
+              <div>
+                <h2 className="font-display text-3xl font-semibold">Let us Connect</h2>
+                <p className="mt-2 max-w-xl font-semibold">
+                  Open to internships, security research collaboration, and CTF partnerships.
+                </p>
+              </div>
+              <LockKeyhole size={36} />
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="mailto:your-email@example.com" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-cyber-lime px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Mail size={18} /> Email</a>
+              <a href="https://github.com/TapasviMadhak" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-white px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Github size={18} /> GitHub</a>
+              <a href="https://linkedin.com/in/tapasvi-madhak-159945248" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-white px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Linkedin size={18} /> LinkedIn</a>
+              <a href="https://tryhackme.com/p/tapasvimadhak" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-white px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Trophy size={18} /> TryHackMe</a>
+            </div>
+          </motion.div>
+        </section>
+      </main>
+
+      <footer className="relative z-10 py-8 text-center text-sm text-cyber-slate">
+        {new Date().getFullYear()} Tapasvi | Cybersecurity Portfolio
+      </footer>
+    </div>
+  );
+}
+
+export default App;

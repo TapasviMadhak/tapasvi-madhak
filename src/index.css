@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.elegant-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(125, 249, 255, 0.45) rgba(255, 255, 255, 0.07);
+}
+
+.elegant-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.elegant-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+
+.elegant-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(125, 249, 255, 0.75), rgba(179, 255, 54, 0.6));
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.elegant-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(125, 249, 255, 0.95), rgba(179, 255, 54, 0.85));
+}
+
+@media (pointer: fine) {
+  .custom-cursor-enabled,
+  .custom-cursor-enabled * {
+    cursor: none !important;
+  }
+}
+
+.neo-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 70;
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  margin-top: -14px;
+  pointer-events: none;
+  opacity: 0;
+  border: 2px solid #000;
+  border-radius: 8px;
+  background: #7df9ff;
+  box-shadow: 4px 4px 0 #000;
+  transition: width 140ms ease, height 140ms ease, border-radius 140ms ease, background-color 140ms ease, transform 90ms ease-out, opacity 150ms ease;
+  will-change: transform;
+}
+
+.neo-cursor--visible {
+  opacity: 1;
+}
+
+.neo-cursor--action {
+  width: 32px;
+  height: 32px;
+  margin-left: -16px;
+  margin-top: -16px;
+  background: #b3ff36;
+}
+
+.neo-cursor--text {
+  width: 18px;
+  height: 34px;
+  margin-left: -9px;
+  margin-top: -17px;
+  border-radius: 5px;
+  background: #ff7a18;
+}
+
+.neo-cursor--pressed {
+  width: 22px;
+  height: 22px;
+  margin-left: -11px;
+  margin-top: -11px;
+  border-radius: 6px;
+  background: #ffd447;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.neo-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 71;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 999px;
+  background: #000;
+  transition: transform 60ms ease-out, opacity 120ms ease, width 120ms ease, height 120ms ease;
+  will-change: transform;
+}
+
+.neo-cursor-dot--visible {
+  opacity: 0.9;
+}
+
+.neo-cursor-dot--pressed {
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+}

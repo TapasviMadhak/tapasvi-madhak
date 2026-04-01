@@ -347,7 +347,7 @@ function App() {
               <LockKeyhole size={36} />
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href="mailto:your-email@example.com" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-cyber-lime px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Mail size={18} /> Email</a>
+              <a href="mailto:madhaktapasvi@gmail.com" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-cyber-lime px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Mail size={18} /> Email</a>
               <a href="https://github.com/TapasviMadhak" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-white px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Github size={18} /> GitHub</a>
               <a href="https://linkedin.com/in/tapasvi-madhak-159945248" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-white px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Linkedin size={18} /> LinkedIn</a>
               <a href="https://tryhackme.com/p/tapasvimadhak" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-white px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Trophy size={18} /> TryHackMe</a>

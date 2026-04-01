@@ -13,6 +13,8 @@ export const skillCategories = {
     'Burp Suite',
     'Nmap',
     'Wireshark',
+    'Splunk',
+    'Virtual Machine (VM)',
     'Linux',
     'Git',
   ],
@@ -20,10 +22,17 @@ export const skillCategories = {
     'Python',
     'JavaScript',
     'TypeScript',
+    'Bash',
+    'SQL',
+    'C',
   ],
   'Frameworks & Libraries': [
     'React',
     'Tailwind CSS',
+    'Next.js',
+    'Express.js',
+    'Node.js',
+    'Framer Motion',
   ],
 };
 

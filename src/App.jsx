@@ -51,8 +51,6 @@ function App() {
       });
   }, []);
 
-  const shouldScrollProjects = liveProjects.length > 4;
-
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-cyber-bg text-white">
       <NeoCursor />
@@ -70,6 +68,7 @@ function App() {
           <a href="#top" className="font-display text-2xl font-bold tracking-wide text-cyber-neon">
             TAPASVI
             <span className="ml-1 text-base font-semibold text-cyber-orange">&lt;/&gt;</span>
+            <span className="ml-1">MADHAK</span>
           </a>
           <ul className="hidden gap-3 font-semibold md:flex">
             {['about', 'skills', 'projects', 'contact'].map((item) => (
@@ -131,6 +130,10 @@ function App() {
                 Preparing for EC-Council's CSA, pursuing M.Sc. IT (Cybersecurity & Forensics) at Parul University, Vadodara.
               </p>
             </div>
+            <div className="mt-4 flex items-center gap-3 rounded-xl border-2 border-black bg-cyber-lime px-4 py-3 text-black shadow-brutal">
+              <Trophy size={18} />
+              <p className="text-sm font-bold">Top 2% Global Rank on TryHackMe</p>
+            </div>
           </motion.aside>
         </section>
 
@@ -146,7 +149,7 @@ function App() {
             <p className="font-display text-sm font-bold text-cyber-neon">
               # About.system
             </p>
-            <h2 className="mt-2 font-display text-3xl font-semibold">
+            <h2 className="mt-2 font-display text-3xl font-semib ld">
               Operator Profile
             </h2>
             <div className="mt-5 grid gap-4 md:grid-cols-[0.9fr_1.1fr]">
@@ -237,7 +240,7 @@ function App() {
           </div>
         </section>
 
-        <ProjectsSection projects={liveProjects} shouldScrollProjects={shouldScrollProjects} fadeInUp={fadeInUp} />
+        <ProjectsSection projects={liveProjects} fadeInUp={fadeInUp} />
 
 
 
@@ -357,7 +360,7 @@ function App() {
       </main>
 
       <footer className="relative z-10 py-8 text-center text-sm text-cyber-slate">
-        {new Date().getFullYear()} Tapasvi | Cybersecurity Portfolio
+        {new Date().getFullYear()} TAPASVI MADHAK &lt;/&gt;
       </footer>
     </div>
   );

@@ -1,15 +1,39 @@
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { ArrowRight, LockKeyhole, Mail, Github, Linkedin, Trophy, BookOpen, ExternalLink } from 'lucide-react';
+import { ArrowRight, LockKeyhole, Mail, Github, Linkedin, Trophy, BookOpen, ExternalLink, Music2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { certifications, fallbackProjects, githubUsername, skillCategories } from './data/portfolioData';
 import ProjectsSection from './components/ProjectsSection';
 import NeoCursor from './components/NeoCursor';
 import { fetchLiveGithubProjects } from './services/githubProjects';
+import tapasviPhoto from './data/tapasvi.jpeg';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0 },
 };
+
+const spotifyTopArtists = [
+  {
+    name: 'Tame Impala',
+    image: 'https://i.scdn.co/image/ab67616100005174e412a782245eb20d9626c601',
+    link: 'https://open.spotify.com/artist/5INjqkS1o8h1imAzPqGZBb',
+  },
+  {
+    name: 'Twenty One Pilots',
+    image: 'https://i.scdn.co/image/ab6761610000517461a7ea26d33ded218cd1e59d',
+    link: 'https://open.spotify.com/artist/3YQKmKGau1PzlVlkL1iodx',
+  },
+  {
+    name: 'Joji',
+    image: 'https://i.scdn.co/image/ab67616100005174b6d7836808e8b99fc8c7aadc',
+    link: 'https://open.spotify.com/artist/3MZsBdqDrRTJihTHQrO6Dq',
+  },
+  {
+    name: 'The Weeknd',
+    image: 'https://i.scdn.co/image/ab676161000051749e528993a2820267b97f6aae',
+    link: 'https://open.spotify.com/artist/1Xyo4u8uXC1ZmMpatF05PJ',
+  },
+];
 
 function App() {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -149,17 +173,27 @@ function App() {
             <p className="font-display text-sm font-bold text-cyber-neon">
               # About.system
             </p>
-            <h2 className="mt-2 font-display text-3xl font-semib ld">
+            <h2 className="mt-2 font-display text-3xl font-semibold">
               Operator Profile
             </h2>
             <div className="mt-5 grid gap-4 md:grid-cols-[0.9fr_1.1fr]">
               <div className="rounded-xl border border-white/20 bg-black/20 p-4 text-sm text-cyber-slate">
-                <p>ROLE: Cybersecurity Student</p>
-                <p>FOCUS: Web App Security + SOC Basics</p>
-                <p>STATUS: Open for internships</p>
-                <p>LOCATION: India</p>
+                <div className="flex h-full items-center justify-center gap-6 p-2">
+                  <img
+                    src={tapasviPhoto}
+                    alt="Tapasvi Madhak"
+                    className="h-36 w-36 rounded-xl border-2 border-black object-cover"
+                  />
+                  <p className="font-display text-4xl font-semibold leading-tight text-cyber-neon">Tapasvi Madhak</p>
+                </div>
               </div>
               <div className="rounded-xl border border-cyber-neon/40 bg-cyber-neon/10 p-4">
+                <div className="mb-4 rounded-lg border border-white/20 bg-black/20 p-3 text-sm text-cyber-slate">
+                  <p>ROLE: Cybersecurity Student</p>
+                  <p>FOCUS: Web App Security + SOC Basics</p>
+                  <p>STATUS: Open for internships</p>
+                  <p>LOCATION: India</p>
+                </div>
                 <p className="text-sm leading-relaxed text-cyber-slate">
                   I am building a career in cybersecurity by combining offensive testing with
                   defensive engineering. I enjoy converting findings into practical fixes and secure
@@ -354,6 +388,41 @@ function App() {
               <a href="https://github.com/TapasviMadhak" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-white px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Github size={18} /> GitHub</a>
               <a href="https://linkedin.com/in/tapasvi-madhak-159945248" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-white px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Linkedin size={18} /> LinkedIn</a>
               <a href="https://tryhackme.com/p/tapasvimadhak" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-white px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1"><Trophy size={18} /> TryHackMe</a>
+              <div className="group relative">
+                <a href="https://open.spotify.com/user/znbd5z9xewbe2w8aptnyznyql?si=938284d859224e29" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border-2 border-black bg-white px-5 py-3 font-bold shadow-brutal transition hover:-translate-x-1 hover:-translate-y-1">
+                  <Music2 size={18} /> Spotify
+                </a>
+                <div className="pointer-events-none absolute left-1/2 bottom-full z-20 mb-3 w-[min(92vw,560px)] -translate-x-1/2 translate-y-2 rounded-2xl border-2 border-black bg-white p-3 text-black opacity-0 shadow-brutal transition duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  <div className="flex items-center justify-between gap-3 pb-3">
+                    <p className="font-display text-sm font-bold">Top 4 Personal Artists</p>
+                    <span className="rounded-full border border-black/20 bg-cyber-neon/30 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide">Spotify</span>
+                  </div>
+                  <div className="grid grid-cols-4 gap-2">
+                    {spotifyTopArtists.map((artist, index) => (
+                      <motion.a
+                        key={artist.name}
+                        href={artist.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.25, delay: index * 0.05 }}
+                        className="group/card overflow-hidden rounded-xl border border-black/15 bg-black/5"
+                      >
+                        <div className="h-24 overflow-hidden sm:h-28">
+                          <img
+                            src={artist.image}
+                            alt={artist.name}
+                            className="h-full w-full object-cover transition duration-500 group-hover/card:scale-110"
+                          />
+                        </div>
+                        <p className="truncate border-t border-black/15 bg-white px-2 py-1 text-[11px] font-bold">{artist.name}</p>
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </section>

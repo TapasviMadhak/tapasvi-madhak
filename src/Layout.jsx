@@ -60,7 +60,6 @@ export default function Layout() {
 
       <footer className="border-t border-ink-border py-8 text-center font-mono text-xs text-ink-muted">
         <span className="text-[#22c55e]/60">©</span> {new Date().getFullYear()} tapasvi madhak
-        <span className="mx-2 text-ink-border">·</span>built with react
       </footer>
     </div>
   );

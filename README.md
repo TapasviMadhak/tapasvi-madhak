@@ -1,6 +1,6 @@
 # TM Portfolio V2
 
-A vibrant neobrutalist cybersecurity portfolio built with React, Vite, Tailwind CSS, and Framer Motion.
+A vibrant neobrutalist cybersecurity portfolio built with Vite, Tailwind CSS, and Framer Motion.
 
 ## Features
 
@@ -12,7 +12,6 @@ A vibrant neobrutalist cybersecurity portfolio built with React, Vite, Tailwind 
 
 ## Tech Stack
 
-- React
 - Vite
 - Tailwind CSS
 - Framer Motion

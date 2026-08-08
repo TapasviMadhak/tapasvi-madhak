@@ -90,8 +90,8 @@ export default function Home() {
               <p className="text-ink-text leading-relaxed mt-3 max-w-xl">
                 I'm building a career in cybersecurity by combining offensive testing with
                 defensive engineering. I enjoy converting security findings into actionable
-                fixes and building tools that make systems measurably more secure. Currently
-                preparing for EC-Council's Certified Security Analyst (CSA) exam.
+                fixes and building tools that make systems measurably more secure.
+                EC-Council Certified SOC Analyst (CSA).
               </p>
             </div>
             <div className="font-mono text-sm space-y-2.5 shrink-0 min-w-[220px]">

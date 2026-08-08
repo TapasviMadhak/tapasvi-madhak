@@ -14,7 +14,7 @@ export default function Skills() {
         transition={{ duration: 0.4 }}
       >
         <p className="font-mono text-xs text-[#22c55e]/60 mb-4 tracking-wide">$ cat skills.json</p>
-        <h1 className="font-display text-3xl font-bold text-ink-white mb-10">Skills &amp; Certifications</h1>
+        <h1 className="text-3xl font-bold text-ink-white mb-10">Skills &amp; Certifications</h1>
 
         <div className="grid gap-12 md:grid-cols-2">
 

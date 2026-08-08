@@ -17,7 +17,7 @@ export default function Home() {
         >
           <span className="font-mono text-sm text-gr block mb-6">$ whoami</span>
 
-          <h1 className="font-display text-5xl md:text-6xl font-extrabold text-ink-white tracking-tight leading-none mb-4">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-ink-white tracking-tight leading-none mb-4">
             Tapasvi Madhak
           </h1>
 
@@ -86,7 +86,7 @@ export default function Home() {
           <p className="font-mono text-xs text-[#22c55e]/60 mb-4 tracking-wide">$ cat about.txt</p>
           <div className="grid gap-8 md:grid-cols-[1fr_auto]">
             <div>
-              <h2 className="font-display text-2xl font-bold text-ink-white mb-1">About</h2>
+              <h2 className="text-2xl font-bold text-ink-white mb-1">About</h2>
               <p className="text-ink-text leading-relaxed mt-3 max-w-xl">
                 I'm building a career in cybersecurity by combining offensive testing with
                 defensive engineering. I enjoy converting security findings into actionable

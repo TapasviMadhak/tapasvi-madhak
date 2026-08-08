@@ -41,7 +41,7 @@ export default function Contact() {
     <section className="py-16">
       <motion.div initial="hidden" animate="show" variants={fade} transition={{ duration: 0.4 }}>
         <p className="font-mono text-xs text-[#22c55e]/60 mb-4 tracking-wide">$ ./contact.sh</p>
-        <h1 className="font-display text-3xl font-bold text-ink-white mb-2">Get in Touch</h1>
+        <h1 className="text-3xl font-bold text-ink-white mb-2">Get in Touch</h1>
         <p className="text-ink-text mb-10 max-w-md">
           Open to internships, security research collaboration, and CTF partnerships.
         </p>

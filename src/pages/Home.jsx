@@ -17,7 +17,7 @@ export default function Home() {
         >
           <span className="font-mono text-sm text-gr block mb-6">$ whoami</span>
 
-          <h1 className="text-5xl md:text-6xl font-extrabold text-ink-white tracking-tight leading-none mb-4">
+          <h1 className="font-display text-5xl md:text-6xl font-extrabold text-ink-white tracking-tight leading-none mb-4">
             Tapasvi Madhak
           </h1>
 
@@ -38,9 +38,12 @@ export default function Home() {
               Top 2% on TryHackMe
             </span>
             <span className="text-ink-muted">·</span>
-            <span className="text-ink-dim">9 Certifications</span>
+            <span className="text-ink-text flex items-center gap-1.5">
+              <span className="text-gr font-mono text-xs border border-gr/30 rounded px-1.5 py-0.5 leading-none">CSA</span>
+              EC-Council Certified
+            </span>
             <span className="text-ink-muted">·</span>
-            <span className="text-ink-dim">Open for Internships</span>
+            <span className="text-ink-text">Open for Internships</span>
           </div>
 
           {/* CTAs */}
@@ -83,8 +86,8 @@ export default function Home() {
           <p className="font-mono text-xs text-[#22c55e]/60 mb-4 tracking-wide">$ cat about.txt</p>
           <div className="grid gap-8 md:grid-cols-[1fr_auto]">
             <div>
-              <h2 className="text-2xl font-bold text-ink-white mb-1">About</h2>
-              <p className="text-ink-dim leading-relaxed mt-3 max-w-xl">
+              <h2 className="font-display text-2xl font-bold text-ink-white mb-1">About</h2>
+              <p className="text-ink-text leading-relaxed mt-3 max-w-xl">
                 I'm building a career in cybersecurity by combining offensive testing with
                 defensive engineering. I enjoy converting security findings into actionable
                 fixes and building tools that make systems measurably more secure. Currently
@@ -100,7 +103,7 @@ export default function Home() {
               ].map(([k, v]) => (
                 <div key={k} className="flex gap-3">
                   <span className="text-[#22c55e]/70 w-16 shrink-0">{k}</span>
-                  <span className="text-ink-dim">{v}</span>
+                  <span className="text-ink-text">{v}</span>
                 </div>
               ))}
             </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -16,12 +16,14 @@ body,
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: #080808;
-  color: #d4d4d4;
+  color: #c8c8c8;
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: #1e1e1e #080808;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 body::-webkit-scrollbar {

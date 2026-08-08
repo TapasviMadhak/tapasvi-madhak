@@ -4,18 +4,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
-        sans: ['Inter', 'sans-serif'],
+        mono:    ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+        sans:    ['"Space Grotesk"', 'sans-serif'],
+        display: ['Syne', 'sans-serif'],
       },
       colors: {
         ink: {
           bg:      '#080808',
           surface: '#111111',
-          border:  '#1e1e1e',
-          hover:   '#242424',
-          muted:   '#404040',
-          dim:     '#737373',
-          text:    '#d4d4d4',
+          border:  '#252525',
+          hover:   '#1e1e1e',
+          muted:   '#555555',
+          dim:     '#909090',
+          text:    '#d8d8d8',
           white:   '#f5f5f5',
         },
         'gr':       '#22c55e',

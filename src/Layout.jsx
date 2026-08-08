@@ -3,10 +3,11 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const navItems = [
-  { label: 'skills',    to: '/skills'    },
-  { label: 'projects',  to: '/projects'  },
-  { label: 'blog',      to: '/blog'      },
-  { label: 'contact',   to: '/contact'   },
+  { label: 'home',     to: '/'        },
+  { label: 'skills',   to: '/skills'  },
+  { label: 'projects', to: '/projects'},
+  { label: 'blog',     to: '/blog'    },
+  { label: 'contact',  to: '/contact' },
 ];
 
 function ScrollToTop() {
@@ -17,50 +18,82 @@ function ScrollToTop() {
 
 export default function Layout() {
   const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   return (
-    <div className="min-h-screen bg-ink-bg text-ink-text">
+    <div className="flex min-h-screen bg-ink-bg text-ink-text">
       <ScrollToTop />
 
-      {/* Scroll progress */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 z-50 h-[2px] bg-gr origin-left"
-        style={{ scaleX }}
-      />
+      {/* ── Left Sidebar Panel ── */}
+      <aside
+        className="fixed top-0 left-0 h-screen z-30 flex flex-col border-r border-ink-border bg-ink-bg/95 backdrop-blur-sm"
+        style={{ width: '220px' }}
+      >
+        {/* Scroll progress — vertical bar on left edge */}
+        <motion.div
+          className="absolute left-0 top-0 w-[2px] bg-gr origin-top"
+          style={{ scaleY, height: '100%' }}
+        />
 
-      {/* Nav */}
-      <header className="sticky top-0 z-20 border-b border-ink-border bg-ink-bg/95 backdrop-blur-sm">
-        <nav className="mx-auto flex w-[min(960px,92%)] items-center justify-between py-4">
-          <NavLink to="/" className="font-mono text-sm font-semibold text-gr">
-            tapasvi@madhak<span className="text-ink-dim">:~$</span>
+        {/* Brand / logo */}
+        <div className="px-6 pt-8 pb-6 border-b border-ink-border">
+          <NavLink
+            to="/"
+            className="font-mono text-sm font-semibold text-gr leading-snug block"
+          >
+            tapasvi@madhak
+            <span className="text-ink-dim block text-xs mt-0.5">:~$</span>
           </NavLink>
-          <ul className="flex gap-6 font-mono text-sm">
+        </div>
+
+        {/* Nav links */}
+        <nav className="flex-1 px-4 py-6">
+          <ul className="space-y-1">
             {navItems.map(({ label, to }) => (
               <li key={label}>
                 <NavLink
                   to={to}
+                  end={to === '/'}
                   className={({ isActive }) =>
-                    isActive
-                      ? 'text-gr'
-                      : 'text-ink-dim hover:text-gr transition-colors duration-150'
+                    [
+                      'flex items-center gap-2 w-full font-mono text-sm px-3 py-2 rounded transition-all duration-150',
+                      isActive
+                        ? 'text-gr bg-gr-faint/30 border border-gr/20'
+                        : 'text-ink-dim hover:text-gr hover:bg-ink-surface border border-transparent',
+                    ].join(' ')
                   }
                 >
-                  {label}
+                  {({ isActive }) => (
+                    <>
+                      <span className="text-[10px] opacity-60">{isActive ? '▶' : '·'}</span>
+                      {label}
+                    </>
+                  )}
                 </NavLink>
               </li>
             ))}
           </ul>
         </nav>
-      </header>
 
-      <main className="mx-auto w-[min(960px,92%)]">
-        <Outlet />
-      </main>
+        {/* Footer hint */}
+        <div className="px-6 pb-6 font-mono text-[10px] text-ink-muted">
+          <span className="text-[#22c55e]/40">©</span> {new Date().getFullYear()} tapasvi madhak
+        </div>
+      </aside>
 
-      <footer className="border-t border-ink-border py-8 text-center font-mono text-xs text-ink-muted">
-        <span className="text-[#22c55e]/60">©</span> {new Date().getFullYear()} tapasvi madhak
-      </footer>
+      {/* ── Main content area, offset by sidebar width ── */}
+      <div
+        className="flex flex-col flex-1 min-h-screen"
+        style={{ marginLeft: '220px' }}
+      >
+        <main className="flex-1 mx-auto w-full max-w-[860px] px-6 py-4">
+          <Outlet />
+        </main>
+
+        <footer className="border-t border-ink-border py-8 text-center font-mono text-xs text-ink-muted">
+          <span className="text-[#22c55e]/60">©</span> {new Date().getFullYear()} tapasvi madhak
+        </footer>
+      </div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default function Skills() {
         transition={{ duration: 0.4 }}
       >
         <p className="font-mono text-xs text-[#22c55e]/60 mb-4 tracking-wide">$ cat skills.json</p>
-        <h1 className="text-3xl font-bold text-ink-white mb-10">Skills &amp; Certifications</h1>
+        <h1 className="font-display text-3xl font-bold text-ink-white mb-10">Skills &amp; Certifications</h1>
 
         <div className="grid gap-12 md:grid-cols-2">
 
@@ -45,24 +45,53 @@ export default function Skills() {
               Certifications
             </p>
             <div className="space-y-2">
-              {certifications.map((cert, i) => (
-                <motion.a
-                  key={cert.name}
-                  href={cert.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  initial={{ opacity: 0, x: -6 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.25, delay: i * 0.04 }}
-                  className="group flex items-center justify-between gap-3 rounded-md border border-ink-border bg-ink-surface px-4 py-3 hover:border-[#22c55e]/30 hover:bg-ink-hover transition-colors duration-150"
-                >
-                  <span className="text-sm text-ink-text leading-snug">{cert.name}</span>
-                  <ExternalLink
-                    size={14}
-                    className="shrink-0 text-ink-muted group-hover:text-gr transition-colors"
-                  />
-                </motion.a>
-              ))}
+              {certifications.map((cert, i) => {
+                const inner = (
+                  <>
+                    <div className="flex flex-col gap-0.5 min-w-0">
+                      <span className="text-sm text-ink-text leading-snug">{cert.name}</span>
+                      {cert.issuer && (
+                        <span className="font-mono text-[10px] text-ink-muted">{cert.issuer}</span>
+                      )}
+                    </div>
+                    {cert.certNo ? (
+                      <span className="font-mono text-[10px] text-gr/70 shrink-0 border border-gr/20 rounded px-1.5 py-0.5">
+                        #{cert.certNo}
+                      </span>
+                    ) : cert.link ? (
+                      <ExternalLink
+                        size={14}
+                        className="shrink-0 text-ink-muted group-hover:text-gr transition-colors"
+                      />
+                    ) : null}
+                  </>
+                );
+
+                return cert.link ? (
+                  <motion.a
+                    key={cert.name}
+                    href={cert.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    initial={{ opacity: 0, x: -6 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.25, delay: i * 0.04 }}
+                    className="group flex items-center justify-between gap-3 rounded-md border border-ink-border bg-ink-surface px-4 py-3 hover:border-[#22c55e]/30 hover:bg-ink-hover transition-colors duration-150"
+                  >
+                    {inner}
+                  </motion.a>
+                ) : (
+                  <motion.div
+                    key={cert.name}
+                    initial={{ opacity: 0, x: -6 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.25, delay: i * 0.04 }}
+                    className="flex items-center justify-between gap-3 rounded-md border border-gr/25 bg-ink-surface px-4 py-3"
+                  >
+                    {inner}
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 

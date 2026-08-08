@@ -96,9 +96,9 @@ export default function Projects() {
                   <div className="px-5 py-3 border-t border-ink-border flex items-center justify-between">
                     <span className="font-mono text-[10px] text-ink-muted">{project.tag}</span>
                     <div className="flex items-center gap-4">
-                      {project.title === 'BugForge-Hub' && (
+                      {project.demo && (
                         <a
-                          href="https://bugforge.tapasvimadhak.works"
+                          href={project.demo}
                           target="_blank"
                           rel="noreferrer"
                           className="font-mono text-xs text-gr hover:underline flex items-center gap-1 transition-colors"

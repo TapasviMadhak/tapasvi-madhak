@@ -36,7 +36,7 @@ export default function Projects() {
       <motion.div initial="hidden" animate="show" variants={fade} transition={{ duration: 0.4 }}>
         <p className="font-mono text-xs text-[#22c55e]/60 mb-4 tracking-wide">$ ls ~/projects</p>
         <div className="flex items-end justify-between mb-10">
-          <h1 className="text-3xl font-bold text-ink-white">Projects</h1>
+          <h1 className="font-display text-3xl font-bold text-ink-white">Projects</h1>
           <a
             href="https://github.com/TapasviMadhak"
             target="_blank"

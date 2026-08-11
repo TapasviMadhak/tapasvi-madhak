@@ -1,6 +1,6 @@
 # Tapasvi Madhak | Cybersecurity Portfolio
 
-A vibrant neobrutalist cybersecurity portfolio built with Vite, Tailwind CSS, and Framer Motion. Showcases offensive testing, defensive engineering, and SOC operations. 
+A clean, modern cybersecurity portfolio built with Vite, Tailwind CSS, and Framer Motion. Showcases offensive testing, defensive engineering, and SOC operations. 
 
 **EC-Council Certified SOC Analyst (CSA)**
 

@@ -99,12 +99,14 @@ export const fetchLiveGithubProjects = async (username, fallbackProjects) => {
     return fallbackProjects;
   }
 
-  const nonForkRepos = repos.filter((repo) => !repo.fork);
+  const nonForkRepos = repos.filter(
+    (repo) => !repo.fork && repo.name.toLowerCase() !== username.toLowerCase()
+  );
   if (nonForkRepos.length === 0) {
     return fallbackProjects;
   }
 
-  const projects = await Promise.all(
+  let projects = await Promise.all(
     nonForkRepos.map(async (repo) => {
       let readmeSummary = null;
 
@@ -115,15 +117,25 @@ export const fetchLiveGithubProjects = async (username, fallbackProjects) => {
         console.warn(`README fetch failed for ${repo.name}:`, error);
       }
 
+      const fallbackData = fallbackProjects.find((p) => p.title === repo.name) || {};
+
       return {
         title: repo.name,
-        tag: repo.language ? `${repo.language} Repository` : 'GitHub Repository',
-        text: readmeSummary || repo.description || 'No README description available yet.',
+        tag: fallbackData.tag || (repo.language ? `${repo.language} Repository` : 'GitHub Repository'),
+        text: readmeSummary || repo.description || fallbackData.text || 'No README description available yet.',
         link: repo.html_url,
-        stack: repo.language || 'Codebase',
+        demo: fallbackData.demo,
+        stack: repo.language || fallbackData.stack || 'Codebase',
       };
     })
   );
+
+  // Pin BugForge-Hub to the top
+  projects.sort((a, b) => {
+    if (a.title === 'BugForge-Hub') return -1;
+    if (b.title === 'BugForge-Hub') return 1;
+    return 0;
+  });
 
   return projects;
 };

@@ -122,7 +122,7 @@ export const fetchLiveGithubProjects = async (username, fallbackProjects) => {
       return {
         title: repo.name,
         tag: fallbackData.tag || (repo.language ? `${repo.language} Repository` : 'GitHub Repository'),
-        text: readmeSummary || repo.description || fallbackData.text || 'No README description available yet.',
+        text: fallbackData.text || readmeSummary || repo.description || 'No README description available yet.',
         link: repo.html_url,
         demo: fallbackData.demo,
         stack: repo.language || fallbackData.stack || 'Codebase',

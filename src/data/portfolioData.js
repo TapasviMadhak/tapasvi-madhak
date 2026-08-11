@@ -56,7 +56,7 @@ export const fallbackProjects = [
   {
     title: 'ares',
     tag: 'Cyber Security Tooling',
-    text: 'Python-based security project focused on practical cyber tooling workflows.',
+    text: 'A web pentesting tool under development.',
     link: 'https://github.com/TapasviMadhak/ares',
     stack: 'Python',
   },

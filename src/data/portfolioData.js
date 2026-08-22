@@ -70,13 +70,7 @@ export const fallbackProjects = [
     link: 'https://github.com/TapasviMadhak/ares',
     stack: 'Python',
   },
-  {
-    title: 'CyberToolkit-v1.0',
-    tag: 'Security Toolkit',
-    text: 'Collection of cybersecurity utilities for day-to-day testing and security practice.',
-    link: 'https://github.com/TapasviMadhak/CyberToolkit-v1.0',
-    stack: 'Python',
-  },
+
   {
     title: 'TM-portfolio',
     tag: 'Portfolio Engineering',

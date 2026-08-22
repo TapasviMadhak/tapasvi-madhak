@@ -46,20 +46,20 @@ export const skillCategories = {
 
 export const fallbackProjects = [
   {
+    title: 'HoneyTrace',
+    tag: 'Threat Intelligence System',
+    text: 'A honeypot and threat tracing tool designed to detect, log, and analyze malicious activity and attacker behavior in real time.',
+    link: 'https://github.com/TapasviMadhak/HoneyTrace',
+    demo: 'https://honeytrace.tapasvimadhak.works',
+    stack: 'JavaScript',
+  },
+  {
     title: 'BugForge-Hub',
     tag: 'Security Platform',
     text: 'Full-stack bug bounty and vulnerability disclosure platform. Features authenticated reporting, severity triage, and a real-time dashboard for tracking security findings.',
     link: 'https://github.com/TapasviMadhak/BugForge-Hub',
     demo: 'https://bugforge.tapasvimadhak.works/',
     stack: 'TypeScript',
-  },
-  {
-    title: 'HoneyTrace',
-    tag: 'Cybersecurity Tool',
-    text: 'A honeypot and threat tracing tool designed to detect, log, and analyze malicious activity and attacker behavior in real time.',
-    link: 'https://github.com/TapasviMadhak/HoneyTrace',
-    demo: 'https://honeytrace.tapasvimadhak.works',
-    stack: 'JavaScript',
   },
   {
     title: 'ares',

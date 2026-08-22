@@ -54,6 +54,14 @@ export const fallbackProjects = [
     stack: 'TypeScript',
   },
   {
+    title: 'HoneyTrace',
+    tag: 'Cybersecurity Tool',
+    text: 'A honeypot and threat tracing tool designed to detect, log, and analyze malicious activity and attacker behavior in real time.',
+    link: 'https://github.com/TapasviMadhak/HoneyTrace',
+    demo: 'https://honeytrace.tapasvimadhak.works',
+    stack: 'JavaScript',
+  },
+  {
     title: 'ares',
     tag: 'Cyber Security Tooling',
     text: 'A web pentesting tool under development.',

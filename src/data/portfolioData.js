@@ -64,6 +64,20 @@ export const fallbackProjects = [
     stack: 'TypeScript',
   },
   {
+    title: 'ares',
+    tag: 'Cyber Security Tooling',
+    text: 'A web pentesting tool under development.',
+    link: 'https://github.com/TapasviMadhak/ares',
+    stack: 'Python',
+  },
+  {
+    title: 'CyberToolkit-v1.0',
+    tag: 'Security Toolkit',
+    text: 'Collection of cybersecurity utilities for day-to-day testing and security practice.',
+    link: 'https://github.com/TapasviMadhak/CyberToolkit-v1.0',
+    stack: 'Python',
+  },
+  {
     title: 'TM-portfolio',
     tag: 'Portfolio Engineering',
     text: 'Previous portfolio implementation focused on frontend UX and modern web tooling.',

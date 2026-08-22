@@ -130,10 +130,14 @@ export const fetchLiveGithubProjects = async (username, fallbackProjects) => {
     })
   );
 
-  // Pin BugForge-Hub to the top
+  // Pin HoneyTrace first, BugForge-Hub second
+  const pinOrder = ['HoneyTrace', 'BugForge-Hub'];
   projects.sort((a, b) => {
-    if (a.title === 'BugForge-Hub') return -1;
-    if (b.title === 'BugForge-Hub') return 1;
+    const ai = pinOrder.indexOf(a.title);
+    const bi = pinOrder.indexOf(b.title);
+    if (ai !== -1 && bi !== -1) return ai - bi;
+    if (ai !== -1) return -1;
+    if (bi !== -1) return 1;
     return 0;
   });
 

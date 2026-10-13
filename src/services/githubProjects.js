@@ -108,16 +108,17 @@ export const fetchLiveGithubProjects = async (username, fallbackProjects) => {
 
   let projects = await Promise.all(
     nonForkRepos.map(async (repo) => {
+      const fallbackData = fallbackProjects.find((p) => p.title === repo.name) || {};
       let readmeSummary = null;
 
-      try {
-        const readmeText = await fetchReadmeText(repo.owner?.login || username, repo.name, repo.default_branch || 'main');
-        readmeSummary = getReadmeSummary(readmeText);
-      } catch (error) {
-        console.warn(`README fetch failed for ${repo.name}:`, error);
+      if (!fallbackData.text) {
+        try {
+          const readmeText = await fetchReadmeText(repo.owner?.login || username, repo.name, repo.default_branch || 'main');
+          readmeSummary = getReadmeSummary(readmeText);
+        } catch (error) {
+          console.warn(`README fetch failed for ${repo.name}:`, error);
+        }
       }
-
-      const fallbackData = fallbackProjects.find((p) => p.title === repo.name) || {};
 
       return {
         title: repo.name,

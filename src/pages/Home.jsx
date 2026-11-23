@@ -5,5 +5,102 @@ import { Link } from 'react-router-dom';
 const fade = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } };
 
 export default function Home() {
-  return <><section className="py-20 md:py-28"><motion.div initial="hidden" animate="show" variants={fade} transition={{ duration: .5 }}><span className="mb-6 block font-mono text-sm text-gr">$ whoami</span><h1 className="mb-4 text-5xl font-extrabold leading-none tracking-tight text-ink-white md:text-6xl">Tapasvi Madhak</h1><p className="mb-7 font-mono text-lg text-ink-dim">Software Developer &amp; Cybersecurity Student<span className="cursor-blink text-gr">▊</span></p><p className="mb-8 max-w-lg leading-relaxed text-ink-text">I build web applications and security tools with a focus on useful, reliable software. Currently pursuing M.Sc. IT in Cybersecurity &amp; Forensics at Parul University, Vadodara.</p><div className="mb-10 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-sm"><span className="flex items-center gap-1.5 text-gr"><Code2 size={13} /> Full-stack projects</span><span className="text-ink-muted">·</span><span className="flex items-center gap-1.5 text-ink-text"><span className="rounded border border-gr/30 px-1.5 py-0.5 font-mono text-xs leading-none text-gr">CSA</span> EC-Council Certified</span><span className="text-ink-muted">·</span><span className="flex items-center gap-1.5 text-ink-text"><Trophy size={13} className="text-gr" /> Top 2% on TryHackMe</span><span className="text-ink-muted">·</span><span className="text-ink-text">Open for internships</span></div><div className="flex flex-wrap gap-3"><Link to="/projects" className="inline-flex items-center gap-2 rounded bg-gr px-5 py-2.5 font-mono text-sm font-bold text-black transition-colors duration-150 hover:bg-gr-dim">Projects <ArrowRight size={15} /></Link><Link to="/contact" className="inline-flex items-center gap-2 rounded border border-ink-border px-5 py-2.5 font-mono text-sm text-ink-dim transition-colors duration-150 hover:border-ink-muted hover:text-ink-text">Contact</Link></div></motion.div></section><div className="border-t border-ink-border" /><section id="about" className="py-14"><motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: .2 }} variants={fade} transition={{ duration: .4 }}><p className="mb-4 font-mono text-xs tracking-wide text-[#22c55e]/60">$ cat about.txt</p><div className="grid gap-8 md:grid-cols-[1fr_auto]"><div><h2 className="mb-1 text-2xl font-bold text-ink-white">About</h2><p className="mt-3 max-w-xl leading-relaxed text-ink-text">I’m interested in the craft of software development and the way secure systems are designed. I enjoy working through technical problems, learning from real projects, and turning an early idea into something people can use.</p></div><div className="min-w-[220px] shrink-0 space-y-2.5 font-mono text-sm">{[['role', 'Software Developer · Security Student'], ['focus', 'Web Apps · Application Security'], ['status', 'Open for internships'], ['location', 'India']].map(([key, value]) => <div key={key} className="flex gap-3"><span className="w-16 shrink-0 text-[#22c55e]/70">{key}</span><span className="text-ink-text">{value}</span></div>)}</div></div><div className="mt-10 flex flex-wrap gap-2">{[{ label: '→ skills', to: '/skills' }, { label: '→ projects', to: '/projects' }, { label: '→ blog', to: '/blog' }, { label: '→ contact', to: '/contact' }].map(({ label, to }) => <Link key={to} to={to} className="rounded border border-ink-border bg-ink-surface px-3 py-1.5 font-mono text-xs text-ink-dim transition-colors duration-150 hover:border-[#22c55e]/40 hover:text-gr">{label}</Link>)}</div></motion.div></section></>;
+  return (
+    <>
+      <section className="py-12 sm:py-20 md:py-28">
+        <motion.div initial="hidden" animate="show" variants={fade} transition={{ duration: 0.5 }}>
+          <span className="mb-6 block font-mono text-sm text-gr">$ whoami</span>
+          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-ink-white sm:text-5xl md:text-6xl">
+            Tapasvi Madhak
+          </h1>
+          <p className="mb-7 font-mono text-base text-ink-dim sm:text-lg">
+            Software Developer &amp; Cybersecurity Student<span className="cursor-blink text-gr">▊</span>
+          </p>
+          <p className="mb-8 max-w-lg leading-relaxed text-ink-text">
+            I build web applications and security tools with a focus on useful, reliable software. Currently pursuing M.Sc. IT in Cybersecurity &amp; Forensics at Parul University, Vadodara.
+          </p>
+          <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs sm:gap-x-5 sm:text-sm">
+            <span className="flex items-center gap-1.5 text-gr">
+              <Code2 size={13} /> Full-stack projects
+            </span>
+            <span className="text-ink-muted">·</span>
+            <span className="flex items-center gap-1.5 text-ink-text">
+              <span className="rounded border border-gr/30 px-1.5 py-0.5 font-mono text-xs leading-none text-gr">CSA</span> EC-Council Certified
+            </span>
+            <span className="text-ink-muted">·</span>
+            <span className="flex items-center gap-1.5 text-ink-text">
+              <Trophy size={13} className="text-gr" /> Top 2% on TryHackMe
+            </span>
+            <span className="text-ink-muted">·</span>
+            <span className="text-ink-text">Open for internships</span>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-2 rounded bg-gr px-5 py-2.5 font-mono text-sm font-bold text-black transition-colors duration-150 hover:bg-gr-dim"
+            >
+              Projects <ArrowRight size={15} />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded border border-ink-border px-5 py-2.5 font-mono text-sm text-ink-dim transition-colors duration-150 hover:border-ink-muted hover:text-ink-text"
+            >
+              Contact
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+
+      <div className="border-t border-ink-border" />
+
+      <section id="about" className="py-10 sm:py-14">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fade}
+          transition={{ duration: 0.4 }}
+        >
+          <p className="mb-4 font-mono text-xs tracking-wide text-[#22c55e]/60">$ cat about.txt</p>
+          <div className="grid gap-8 md:grid-cols-[1fr_auto]">
+            <div>
+              <h2 className="mb-1 text-2xl font-bold text-ink-white">About</h2>
+              <p className="mt-3 max-w-xl leading-relaxed text-ink-text">
+                I’m interested in the craft of software development and the way secure systems are designed. I enjoy working through technical problems, learning from real projects, and turning an early idea into something people can use.
+              </p>
+            </div>
+            <div className="min-w-0 shrink-0 space-y-2.5 font-mono text-sm md:min-w-[220px]">
+              {[
+                ['role', 'Software Developer · Security Student'],
+                ['focus', 'Web Apps · Application Security'],
+                ['status', 'Open for internships'],
+                ['location', 'India'],
+              ].map(([key, value]) => (
+                <div key={key} className="flex gap-3">
+                  <span className="w-16 shrink-0 text-[#22c55e]/70">{key}</span>
+                  <span className="min-w-0 text-ink-text">{value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-10 flex flex-wrap gap-2">
+            {[
+              { label: '→ skills', to: '/skills' },
+              { label: '→ projects', to: '/projects' },
+              { label: '→ blog', to: '/blog' },
+              { label: '→ contact', to: '/contact' },
+            ].map(({ label, to }) => (
+              <Link
+                key={to}
+                to={to}
+                className="rounded border border-ink-border bg-ink-surface px-3 py-1.5 font-mono text-xs text-ink-dim transition-colors duration-150 hover:border-[#22c55e]/40 hover:text-gr"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+    </>
+  );
 }

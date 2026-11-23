@@ -5,4 +5,98 @@ import { fallbackProjects, githubUsername } from '../data/portfolioData';
 import { fetchLiveGithubProjects } from '../services/githubProjects';
 const fade = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } };
 const langColor = (lang = '') => ({ Python: '#3b82f6', JavaScript: '#eab308', TypeScript: '#6366f1', Bash: '#22c55e', C: '#ec4899', Go: '#06b6d4', Rust: '#f97316' }[lang] || '#6b7280');
-export default function Projects() { const [projects, setProjects] = useState(fallbackProjects); const [loading, setLoading] = useState(true); useEffect(() => { fetchLiveGithubProjects(githubUsername, fallbackProjects).then((items) => { if (items.length) setProjects(items); }).catch(() => {}).finally(() => setLoading(false)); }, []); return <section className="py-16"><motion.div initial="hidden" animate="show" variants={fade} transition={{ duration: .4 }}><p className="mb-4 font-mono text-xs tracking-wide text-[#22c55e]/60">$ ls ~/projects</p><div className="mb-10 flex items-end justify-between"><h1 className="text-3xl font-bold text-ink-white">Projects</h1><a href="https://github.com/TapasviMadhak" target="_blank" rel="noreferrer" className="flex items-center gap-1 font-mono text-xs text-gr hover:underline">GitHub <ExternalLink size={12} /></a></div>{loading ? <div className="py-16 text-center font-mono text-sm text-ink-muted"><span className="text-gr">▊</span> loading repositories…</div> : <div className="grid gap-4 sm:grid-cols-2">{projects.map((project, index) => { const color = langColor(project.stack); return <motion.article key={project.title} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .3, delay: index * .05 }} className="group relative flex flex-col overflow-hidden rounded-md border border-ink-border bg-ink-surface transition-colors duration-200 hover:border-ink-muted" style={{ borderLeftColor: color, borderLeftWidth: '3px' }}><div className="flex flex-1 flex-col p-5"><div className="mb-3 flex items-start justify-between gap-3"><div className="flex items-center gap-2"><Folder size={14} style={{ color }} className="mt-0.5 shrink-0" /><h2 className="font-mono text-sm font-semibold leading-tight text-ink-white transition-colors group-hover:text-gr">{project.title}</h2></div><span className="shrink-0 rounded border px-2 py-0.5 font-mono text-[10px]" style={{ color, borderColor: `${color}40`, backgroundColor: `${color}12` }}>{project.stack}</span></div><p className="flex-1 text-xs leading-relaxed text-ink-dim line-clamp-3">{project.text}</p></div><div className="flex items-center justify-between gap-3 border-t border-ink-border px-5 py-3"><span className="min-w-0 font-mono text-[10px] text-ink-muted">{project.tag}</span><div className="flex shrink-0 items-center gap-4 whitespace-nowrap">{project.demo && <a href={project.demo} target="_blank" rel="noreferrer" className="flex items-center gap-1 whitespace-nowrap font-mono text-xs text-gr transition-colors hover:underline"><ExternalLink size={11} /> live demo</a>}<a href={project.link} target="_blank" rel="noreferrer" className="flex items-center gap-1 whitespace-nowrap font-mono text-xs text-ink-muted transition-colors hover:text-gr"><ExternalLink size={11} /> view repo</a></div></div></motion.article>; })}</div>}</motion.div></section>; }
+export default function Projects() {
+  const [projects, setProjects] = useState(fallbackProjects);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchLiveGithubProjects(githubUsername, fallbackProjects)
+      .then((items) => {
+        if (items.length) setProjects(items);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  return (
+    <section className="py-10 sm:py-16">
+      <motion.div initial="hidden" animate="show" variants={fade} transition={{ duration: 0.4 }}>
+        <p className="mb-4 font-mono text-xs tracking-wide text-[#22c55e]/60">$ ls ~/projects</p>
+        <div className="mb-8 flex items-end justify-between gap-4 sm:mb-10">
+          <h1 className="text-2xl font-bold text-ink-white sm:text-3xl">Projects</h1>
+          <a
+            href="https://github.com/TapasviMadhak"
+            target="_blank"
+            rel="noreferrer"
+            className="flex shrink-0 items-center gap-1 font-mono text-xs text-gr hover:underline"
+          >
+            GitHub <ExternalLink size={12} />
+          </a>
+        </div>
+
+        {loading ? (
+          <div className="py-16 text-center font-mono text-sm text-ink-muted">
+            <span className="text-gr">▊</span> loading repositories…
+          </div>
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2">
+            {projects.map((project, index) => {
+              const color = langColor(project.stack);
+              return (
+                <motion.article
+                  key={project.title}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className="group relative flex flex-col overflow-hidden rounded-md border border-ink-border bg-ink-surface transition-colors duration-200 hover:border-ink-muted"
+                  style={{ borderLeftColor: color, borderLeftWidth: '3px' }}
+                >
+                  <div className="flex flex-1 flex-col p-4 sm:p-5">
+                    <div className="mb-3 flex items-start justify-between gap-3">
+                      <div className="flex min-w-0 items-center gap-2">
+                        <Folder size={14} style={{ color }} className="mt-0.5 shrink-0" />
+                        <h2 className="truncate font-mono text-sm font-semibold leading-tight text-ink-white transition-colors group-hover:text-gr">
+                          {project.title}
+                        </h2>
+                      </div>
+                      <span
+                        className="shrink-0 rounded border px-2 py-0.5 font-mono text-[10px]"
+                        style={{ color, borderColor: `${color}40`, backgroundColor: `${color}12` }}
+                      >
+                        {project.stack}
+                      </span>
+                    </div>
+                    <p className="flex-1 text-xs leading-relaxed text-ink-dim line-clamp-3">{project.text}</p>
+                  </div>
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-t border-ink-border px-4 py-3 sm:gap-3 sm:px-5">
+                    <span className="min-w-0 font-mono text-[10px] text-ink-muted">{project.tag}</span>
+                    <div className="flex shrink-0 items-center gap-4 whitespace-nowrap">
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-1 whitespace-nowrap font-mono text-xs text-gr transition-colors hover:underline"
+                        >
+                          <ExternalLink size={11} /> live demo
+                        </a>
+                      )}
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center gap-1 whitespace-nowrap font-mono text-xs text-ink-muted transition-colors hover:text-gr"
+                      >
+                        <ExternalLink size={11} /> view repo
+                      </a>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+        )}
+      </motion.div>
+    </section>
+  );
+}

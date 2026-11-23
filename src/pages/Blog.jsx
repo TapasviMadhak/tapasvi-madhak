@@ -42,14 +42,14 @@ export default function Blog() {
   }, []);
 
   return (
-    <section className="py-16">
+    <section className="py-10 sm:py-16">
       <motion.div initial="hidden" animate="show" variants={fade} transition={{ duration: 0.4 }}>
         <p className="mb-4 font-mono text-xs tracking-wide text-[#22c55e]/60">
           $ curl medium.com/@tapasviMadhak
         </p>
-        <div className="mb-10 flex items-end justify-between">
-          <h1 className="text-3xl font-bold text-ink-white">Articles</h1>
-          <a href="https://medium.com/@tapasviMadhak" target="_blank" rel="noreferrer" className="flex items-center gap-1 font-mono text-xs text-gr hover:underline">
+        <div className="mb-8 flex items-end justify-between gap-4 sm:mb-10">
+          <h1 className="text-2xl font-bold text-ink-white sm:text-3xl">Articles</h1>
+          <a href="https://medium.com/@tapasviMadhak" target="_blank" rel="noreferrer" className="flex shrink-0 items-center gap-1 font-mono text-xs text-gr hover:underline">
             All posts <ArrowRight size={12} />
           </a>
         </div>
@@ -77,14 +77,14 @@ export default function Blog() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25, delay: index * 0.04 }}
-                className="group flex items-start gap-5 rounded-md border border-ink-border bg-ink-surface px-5 py-4 transition-colors duration-150 hover:border-[#22c55e]/30 hover:bg-ink-hover"
+                className="group flex flex-col items-start gap-1.5 rounded-md border border-ink-border bg-ink-surface px-4 py-4 transition-colors duration-150 hover:border-[#22c55e]/30 hover:bg-ink-hover sm:flex-row sm:gap-5 sm:px-5"
               >
-                <p className="w-24 shrink-0 pt-0.5 font-mono text-[11px] text-ink-muted">
+                <p className="shrink-0 pt-0.5 font-mono text-[11px] text-ink-muted sm:w-24">
                   {new Date(post.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </p>
                 <div className="min-w-0">
                   <h2 className="text-sm font-semibold leading-snug text-ink-text transition-colors group-hover:text-ink-white">{post.title}</h2>
-                  <p className="mt-1 line-clamp-1 text-xs text-ink-dim">{post.excerpt}</p>
+                  <p className="mt-1 line-clamp-2 text-xs text-ink-dim sm:line-clamp-1">{post.excerpt}</p>
                 </div>
               </motion.a>
             ))}
